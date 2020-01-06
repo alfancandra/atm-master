@@ -6,6 +6,36 @@
 
 using namespace std;
 
+void sorting(string arr[], int n)  
+{  
+    int i, j;
+    string key;  
+    for (i = 1; i < n; i++) 
+    {  
+        key = arr[i];  
+        j = i - 1;  
+  
+        /* Move elements of arr[0..i-1], that are  
+        greater than key, to one position ahead  
+        of their current position */
+        while (j >= 0 && arr[j] > key) 
+        {  
+            arr[j + 1] = arr[j];  
+            j = j - 1;  
+        }  
+        arr[j + 1] = key;  
+    }  
+}  
+  
+// A utility function to print an array of size n  
+void cetak(string arr[], int n)  
+{  
+    int i;  
+    for (i = 0; i < n; i++)  
+        cout << arr[i] << endl;  
+    cout << endl; 
+}  
+
 void tarik_tunai(int line2,int cash,int cash1){
     ifstream outa;
     outa.open("file2.txt");
@@ -155,13 +185,16 @@ int main()
                     menu:
                     cout << endl;
                     cout << "=========================\n";
+                    cout << "       ATM BANGKIT    \n";
+                    cout << "=========================\n";
                     cout << "1. Tarik Tunai\n";
                     cout << "2. Riwayat Tarik tunai\n";
                     cout << "3. Setor Tunai\n";
                     cout << "4. Riwayat Setor Tunai\n";
                     cout << "5. Info saldo\n";
                     cout << "6. Bayar Kuliah\n";
-                    cout << "7. Keluar\n";
+                    cout << "7. Lokasi ATM\n";
+                    cout << "8. Keluar\n";
                     cout << "Pilih = ";
                     cin >> c;
                     cout << endl;
@@ -324,8 +357,15 @@ int main()
                                 }
                                 break;
                         }
-
-                        case 7:
+                        case 7:{
+                            string arr[]={"Purwokerto","Bumiayu","Banyumas","Cilacap","Kebumen","Tegal"};
+                            int n = sizeof(arr)/sizeof(*arr);
+                            sorting(arr,n);
+                            cetak(arr,n);
+                            goto coba;
+                            break;
+                        }
+                        case 8:
                         {
                             system("clear");
                             cout << "Terima Kasih" << endl;
@@ -343,7 +383,7 @@ int main()
                         }
                     }
                 }
-                while(c!=7);
+                while(c!=8);
         }
         else
         {
